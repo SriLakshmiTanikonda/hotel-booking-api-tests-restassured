@@ -47,8 +47,11 @@ public final class TestDataDb {
             throw new IllegalStateException("Could not read " + resource, e);
         }
         try (Statement statement = connection.createStatement()) {
-            for (String part : sql.split(";")) {
-                String trimmed = part.replaceAll("(?m)^\\s*--.*$", "").trim();
+            // Strip comment lines before splitting, so a ';' inside a comment
+            // does not cut a statement in half.
+            String withoutComments = sql.replaceAll("(?m)^\\s*--.*$", "");
+            for (String part : withoutComments.split(";")) {
+                String trimmed = part.trim();
                 if (!trimmed.isEmpty()) {
                     statement.execute(trimmed);
                 }

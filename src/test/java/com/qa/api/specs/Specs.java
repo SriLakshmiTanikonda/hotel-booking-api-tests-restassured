@@ -23,7 +23,7 @@ public final class Specs {
         return new RequestSpecBuilder()
                 .setBaseUri(ApiConfig.baseUri())
                 .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON)
+                .setAccept("application/json")
                 .build();
     }
 
