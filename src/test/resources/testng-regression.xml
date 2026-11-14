@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Full suite. Test classes run in parallel; each class creates and removes its own data. -->
+<suite name="Booking API - Regression" parallel="classes" thread-count="4" data-provider-thread-count="4">
+    <test name="All API tests">
+        <classes>
+            <class name="com.qa.api.tests.AuthTests"/>
+            <class name="com.qa.api.tests.BookingCrudTests"/>
+            <class name="com.qa.api.tests.BookingNegativeTests"/>
+            <class name="com.qa.api.tests.DataDrivenBookingTests"/>
+        </classes>
+    </test>
+</suite>
